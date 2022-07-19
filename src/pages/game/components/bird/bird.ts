@@ -23,14 +23,14 @@ export class Bird {
   private birdJumpSound: HTMLAudioElement;
   private birdHitSound: HTMLAudioElement;
   private pointSound: HTMLAudioElement;
-  private groundHitSound: HTMLAudioElement;
+  // private groundHitSound: HTMLAudioElement;
 
   constructor(ctx: CanvasRenderingContext2D) {
     this.bird = new Image();
     this.birdJumpSound = new Audio(jumpSound);
     this.birdHitSound = new Audio(pipeHitSound);
     this.pointSound = new Audio(pointSound);
-    this.groundHitSound = new Audio(groundHitSound);
+    // this.groundHitSound = new Audio(groundHitSound);
     this.bird.src = bird as string;
     this.ctx = ctx;
     this.y = ctx.canvas.height / 2;
@@ -65,7 +65,7 @@ export class Bird {
     this.jump();
 
     if (this.y >= this.ctx.canvas.height - BirdConstants.BIRD_HEIGHT) {
-      this.groundHitSound.play();
+      // this.groundHitSound.play();
       this.ctx.drawImage(this.bird, this.x, this.ctx.canvas.height - BirdConstants.BIRD_HEIGHT);
 
       return true;
