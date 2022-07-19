@@ -34,7 +34,7 @@ export const SignupForm = () => {
     if (passwordRepeat === data.password) {
       signup(data)
         .then((res) => {
-          if (res.reason) {
+          if (!res.reason) {
             dispatch(setUserLoggedIn(true));
             navigate('/game', { replace: true });
           }
