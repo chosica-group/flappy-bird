@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('./server/models');
 
 const app = express();
 
@@ -10,6 +11,6 @@ function serveIndev(req, res) {
 }
 
 app.get('*', serveIndev);
-app.listen(PORT, () => { // хероку тут берет свой PORT из своего env
-  console.log(`Running on ${PORT}`);
-});
+db.sequelize.sync()
+  .then(() => app.listen(PORT, () => console.log(`Running on ${PORT}`)))
+  .catch((err) => console.log(err));
