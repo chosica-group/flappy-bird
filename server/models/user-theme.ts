@@ -1,40 +1,34 @@
-// import {
-//   AllowNull,
-//   AutoIncrement,
-//   Column,
-//   DataType,
-//   Index,
-//   Model,
-//   PrimaryKey,
-//   ForeignKey,
-//   Table,
-//   Unique,
-// } from 'sequelize-typescript';
+import {
+  AllowNull,
+  AutoIncrement,
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+  PrimaryKey,
+  Table,
+  Unique,
+} from 'sequelize-typescript';
+import { SiteTheme} from './site_theme';
 
-// @Table({
-//   timestamps: false,
-//   paranoid: true,
-//   tableName: 'user_theme'
-// })
-// class UserTheme extends Model<UserTheme> {
-//   @AutoIncrement
-//   @PrimaryKey
-//   @Column(DataType.INTEGER)
-//   id: number;
+@Table({
+  timestamps: false,
+  paranoid: true,
+  tableName: 'user_theme',
+})
+export class UserTheme extends Model<UserTheme> {
+  @AutoIncrement
+  @Column(DataType.INTEGER)
+  id: number;
 
-//   @AllowNull(false)
-//   @Unique
-//   @Column(DataType.STRING)
-//   theme: string;
+  @AllowNull(false)
+  @PrimaryKey
+  @Unique
+  @Column(DataType.INTEGER)
+  user_id: number;
 
-//   @Column(DataType.STRING)
-//   device: string;
-
-//   @ForeignKey(() => User)
-//   @AllowNull(false)
-//   @Column({
-//     type: DataType.INTEGER,
-//     field: 'owner_id'
-//   })
-//   ownerId: string;
-// } 
+  @ForeignKey(() => SiteTheme)
+  @AllowNull(false)
+  @Column(DataType.INTEGER)
+  theme_id: string;
+}
